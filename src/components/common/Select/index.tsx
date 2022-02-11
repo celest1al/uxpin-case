@@ -38,7 +38,7 @@ const Select = ({
         onChange={onChange}
         width={selectFormWidth}
       >
-        {options.map((option: Option, index: number) => (
+        {options?.map((option: Option, index: number) => (
           <option key={`${option?.value}-${index}`} value={option?.value}>
             {option?.label}
           </option>

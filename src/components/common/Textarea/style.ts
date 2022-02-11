@@ -9,7 +9,7 @@ export const TextareaContainer = styled.div<TextareaContainerProps>`
   flex-direction: column;
   color: #5e5e5e;
   font-size: 0.875rem;
-  width: ${(props) => props.width || "100%"};
+  max-width: ${(props) => props.width || "100%"};
 `;
 
 export const TextareaLabel = styled.label`
@@ -21,4 +21,11 @@ export const TextareaForm = styled.textarea`
   border: 1px solid #e6e6e6;
   resize: none;
   padding: 8px;
+  color: #5e5e5e;
 `;
+
+export const TextareaDescription = styled.p`
+  margin: 0;
+  margin-top: 2px;
+  font-size: 0.75rem;
+`

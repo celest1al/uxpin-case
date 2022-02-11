@@ -5,4 +5,5 @@ export type Property =
   | "propertyType"
   | "propertyControl"
   | "options"
-  | "defaultValue";
+  | "defaultValue"
+  | "reset";

@@ -1,8 +1,18 @@
 import styled from "styled-components";
 
-export const ToggleContainer = styled.div``;
+export const ToggleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  color: #5e5e5e;
+`;
 
-export const ToggleLabel = styled.label``;
+export const ToggleLabel = styled.p`
+  margin: 0;
+  margin-right: 16px;
+  font-size: 0.875rem;
+`;
+
+export const ToggleFormLabel = styled.label``;
 
 export const ToggleForm = styled.input`
   margin: 0 0 1.5rem;
@@ -16,17 +26,17 @@ export const ToggleForm = styled.input`
   height: 0;
   position: absolute;
   left: -9999px;
-  color: #515151;
+  color: #5e5e5e;
 
-  & + ${ToggleLabel} {
+  & + ${ToggleFormLabel} {
     margin: 0;
-    padding: 8px 16px;
+    padding: 4px 8px;
     box-sizing: border-box;
     position: relative;
     display: inline-block;
     border: solid 1px #f0f0f0;
     background-color: #fff;
-    font-size: 1rem;
+    font-size: 0.875rem;
     line-height: 140%;
     font-weight: 600;
     text-align: center;
@@ -44,18 +54,18 @@ export const ToggleForm = styled.input`
     border-left: none;
   }
 
-  &:hover + ${ToggleLabel} {
+  &:hover + ${ToggleFormLabel} {
     border-color: #213140;
   }
 
-  &:checked + ${ToggleLabel} {
+  &:checked + ${ToggleFormLabel} {
     background-color: #e6e6e6;
     color: #515151;
     box-shadow: 0 0 10px rgba(#66b3fb, 0.5);
     border-color: #e6e6e6;
     z-index: 1;
   }
-  &:focus + ${ToggleLabel} {
+  &:focus + ${ToggleFormLabel} {
     outline: dotted 1px #ccc;
     outline-offset: 0.45rem;
   }

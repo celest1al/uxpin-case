@@ -13,6 +13,7 @@ export const InputForm = styled.input`
   border: none;
   border-bottom: 1px solid #e6e6e6;
   outline: none;
+  color: #5e5e5e;
 
   &:focus {
     border-bottom: 1px solid #1976d2;

@@ -1,18 +1,20 @@
 import Button from "@mui/material/Button";
 
-import { useCreateProperty } from "./hooks";
+import { useCreateProperty, useUpdateProperty } from "./hooks";
 
 import visibilityOn from "components/assets/visibility-visible.svg";
 import Gear from "components/assets/gear.svg";
 import Header from "components/layout/Header";
 import ComponentPreview from "./components/ComponentsPreview";
 import CreateProperty from "./components/CreateProperty";
+import PropertyList from './components/PropertyList'
 import { MainLayout } from "components/layout/MainLayout";
 import { TitleContainer, Title, TitleIcon } from "./style";
 
 function App() {
-  const { isCreateMode, property, setIsCreateMode, handleCreateProperty } =
+  const { isCreateMode, newProperty, setIsCreateMode, handleCreateProperty } =
     useCreateProperty();
+  const { propertyList, handleUpdateProperty, onDeleteProperty, onToggleProperty} = useUpdateProperty();
 
   return (
     <>
@@ -36,10 +38,16 @@ function App() {
           )}
         />
         <CreateProperty
-          property={property}
+          property={newProperty}
           handleCreateProperty={handleCreateProperty}
           isCreateMode={isCreateMode}
           setCreateMode={(value: boolean) => setIsCreateMode(value)}
+        />
+        <PropertyList
+          propertyList={propertyList}
+          handleChangeProperty={handleUpdateProperty}
+          onToggleProperty={onToggleProperty}
+          onDeleteProperty={onDeleteProperty}
         />
       </MainLayout>
     </>

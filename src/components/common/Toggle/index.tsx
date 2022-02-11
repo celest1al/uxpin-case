@@ -1,27 +1,36 @@
-import { ToggleContainer, ToggleForm, ToggleLabel } from "./style";
+import {
+  ToggleContainer,
+  ToggleForm,
+  ToggleFormLabel,
+  ToggleLabel,
+} from "./style";
 
 interface ToggleProps {
+  label: string;
   value: boolean;
   onChange: (value: boolean) => void;
 }
 
-const Toggle = ({ value, onChange }: ToggleProps): JSX.Element => {
+const Toggle = ({ value, label, onChange }: ToggleProps): JSX.Element => {
   return (
     <ToggleContainer>
-      <ToggleForm
-        id="true"
-        type="radio"
-        checked={value === true}
-        onChange={() => onChange(true)}
-      />
-      <ToggleLabel htmlFor="true">True</ToggleLabel>
-      <ToggleForm
-        id="false"
-        type="radio"
-        checked={value === false}
-        onChange={() => onChange(false)}
-      />
-      <ToggleLabel htmlFor="false">False</ToggleLabel>
+      <ToggleLabel>{label}</ToggleLabel>
+      <div>
+        <ToggleForm
+          id="true"
+          type="radio"
+          checked={value === true}
+          onChange={() => onChange(true)}
+        />
+        <ToggleFormLabel htmlFor="true">True</ToggleFormLabel>
+        <ToggleForm
+          id="false"
+          type="radio"
+          checked={value === false}
+          onChange={() => onChange(false)}
+        />
+        <ToggleFormLabel htmlFor="false">False</ToggleFormLabel>
+      </div>
     </ToggleContainer>
   );
 };

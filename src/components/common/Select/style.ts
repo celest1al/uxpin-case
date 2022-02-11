@@ -18,6 +18,7 @@ export const SelectForm = styled.select<SelectFormProps>`
   border-bottom: 1px solid #e6e6e6;
   background: transparent;
   width: ${(props) => props.width};
+  color: #5e5e5e;
 `;
 
 export const SelectDescription = styled.p`
