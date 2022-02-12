@@ -3,12 +3,12 @@ import {
   ToggleForm,
   ToggleFormLabel,
   ToggleLabel,
-} from "./style";
+} from './style'
 
 interface ToggleProps {
-  label: string;
-  value: boolean;
-  onChange: (value: boolean) => void;
+  label: string
+  value: boolean
+  onChange: (value: boolean) => void
 }
 
 const Toggle = ({ value, label, onChange }: ToggleProps): JSX.Element => {
@@ -32,7 +32,7 @@ const Toggle = ({ value, label, onChange }: ToggleProps): JSX.Element => {
         <ToggleFormLabel htmlFor="false">False</ToggleFormLabel>
       </div>
     </ToggleContainer>
-  );
-};
+  )
+}
 
-export default Toggle;
+export default Toggle

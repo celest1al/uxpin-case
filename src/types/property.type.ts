@@ -1,9 +1,9 @@
 export type Property =
-  | "propertyName"
-  | "displayName"
-  | "description"
-  | "propertyType"
-  | "propertyControl"
-  | "options"
-  | "defaultValue"
-  | "reset";
+  | 'propertyName'
+  | 'displayName'
+  | 'description'
+  | 'propertyType'
+  | 'propertyControl'
+  | 'options'
+  | 'defaultValue'
+  | 'reset'

@@ -1,72 +1,81 @@
-import { useState } from "react";
+import { useState, useEffect } from 'react'
+import isEqual from 'lodash.isequal'
 
 import {
   IProperty,
   IPropertyList,
   IHandlePropertyParams,
-} from "interfaces/property.interface";
-import {
-  defaultProperty,
-  propertyListState,
-} from "constants/property.constant";
+} from 'interfaces/property.interface'
+import { defaultProperty, propertyListState } from 'constants/property.constant'
 
 export const useCreateProperty = () => {
-  const [newProperty, setNewProperty] = useState<IProperty>(defaultProperty);
-  const [isCreateMode, setIsCreateMode] = useState<boolean>(false);
+  const [newProperty, setNewProperty] = useState<IProperty>(defaultProperty)
+  const [isCreateMode, setIsCreateMode] = useState<boolean>(false)
 
   const handleCreateProperty = ({ type, value }: IHandlePropertyParams) => {
-    if (type === "reset") {
-      setNewProperty(defaultProperty);
-    } else if (type === "propertyType") {
-      setNewProperty((prevState) => ({
+    if (type === 'reset') {
+      setNewProperty(defaultProperty)
+    } else if (type === 'propertyType') {
+      setNewProperty(prevState => ({
         ...prevState,
         propertyType: String(value),
-        propertyControl: "",
-        options: "",
+        propertyControl: '',
+        options: '',
         defaultValue: null,
-      }));
+      }))
     } else {
-      setNewProperty((prevState) => ({
+      setNewProperty(prevState => ({
         ...prevState,
         [type]: value,
-      }));
+      }))
     }
-  };
+  }
 
   return {
     newProperty,
     handleCreateProperty,
     isCreateMode,
     setIsCreateMode,
-  };
-};
+  }
+}
 
 export const useUpdateProperty = () => {
   const [propertyList, setPropertyList] =
-    useState<IPropertyList[]>(propertyListState);
+    useState<IPropertyList[]>(propertyListState)
+  const [newPropertyList, setNewPropertyList] =
+    useState<IPropertyList[]>(propertyListState)
+  const [isPropertyChanged, setIsPropertyChanged] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (isEqual(propertyList, newPropertyList)) {
+      setIsPropertyChanged(false)
+    } else {
+      setIsPropertyChanged(true)
+    }
+  }, [propertyList, newPropertyList])
 
   const handleUpdateProperty = ({ type, id, value }: IHandlePropertyParams) => {
-    const indexedProperty = propertyList.findIndex((item) => item?.id === id);
-    let tempPropertyList = propertyList;
+    const indexedProperty = newPropertyList.findIndex(item => item?.id === id)
+    let tempPropertyList = newPropertyList
 
     if (indexedProperty < 0) {
-      return;
+      return
     } else {
-      if (type === "reset") {
-        setPropertyList(propertyListState);
-      } else if (type === "propertyType") {
+      if (type === 'reset') {
+        setNewPropertyList(propertyListState)
+      } else if (type === 'propertyType') {
         tempPropertyList[indexedProperty] = {
           ...tempPropertyList[indexedProperty],
           property: {
             ...tempPropertyList[indexedProperty]?.property,
             propertyType: String(value),
-            propertyControl: "",
-            options: "",
+            propertyControl: '',
+            options: '',
             defaultValue: null,
           },
-        };
+        }
 
-        setPropertyList([...tempPropertyList]);
+        setNewPropertyList([...tempPropertyList])
       } else {
         tempPropertyList[indexedProperty] = {
           ...tempPropertyList[indexedProperty],
@@ -74,41 +83,61 @@ export const useUpdateProperty = () => {
             ...tempPropertyList[indexedProperty]?.property,
             [type]: value,
           },
-        };
+        }
+
+        setNewPropertyList([...tempPropertyList])
       }
     }
-  };
+  }
 
   const onToggleProperty = (id: number) => {
-    const indexedProperty = propertyList.findIndex((item) => item?.id === id);
-    let tempPropertyList = propertyList;
+    const indexedProperty = newPropertyList.findIndex(item => item?.id === id)
+    let tempPropertyList = newPropertyList
 
     if (indexedProperty < 0) {
-      return;
+      return
     } else {
       tempPropertyList[indexedProperty] = {
         ...tempPropertyList[indexedProperty],
-        isDisabled: !tempPropertyList[indexedProperty]?.isDisabled,
-      };
+        isShowed: !tempPropertyList[indexedProperty]?.isShowed,
+      }
 
-      setPropertyList([...tempPropertyList]);
+      setNewPropertyList([...tempPropertyList])
     }
   }
 
   const onDeleteProperty = (id: number) => {
-    const filteredPropertyList = propertyList.filter((item) => item?.id !== id);
+    const filteredPropertyList = newPropertyList.filter(item => item?.id !== id)
 
-    setPropertyList(filteredPropertyList)
+    setNewPropertyList(filteredPropertyList)
   }
 
-  const onAddProperty = () => {
-    
+  const onAddProperty = (property: IProperty) => {
+    const newProperty = {
+      id: propertyList.length + 1,
+      property,
+      isShowed: true,
+    }
+
+    setNewPropertyList(prevState => [...prevState, newProperty])
+  }
+
+  const onCancelPropertyChanged = () => {
+    setNewPropertyList(propertyList)
+  }
+
+  const onConfirmPropertyChanged = () => {
+    setPropertyList(newPropertyList)
   }
 
   return {
-    propertyList,
+    newPropertyList,
+    isPropertyChanged,
     onToggleProperty,
     onDeleteProperty,
+    onAddProperty,
+    onCancelPropertyChanged,
+    onConfirmPropertyChanged,
     handleUpdateProperty,
-  };
-};
+  }
+}

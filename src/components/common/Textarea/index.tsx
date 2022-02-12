@@ -3,16 +3,16 @@ import {
   TextareaLabel,
   TextareaContainer,
   TextareaDescription,
-} from "./style";
+} from './style'
 
 interface TextareaProps {
-  id: string;
-  label: string;
-  value?: string;
-  textareaWidth?: string;
-  description?: string;
-  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  onBlur?: (event: React.FocusEvent<HTMLTextAreaElement>) => void;
+  id: string
+  label: string
+  value?: string
+  textareaWidth?: string
+  description?: string
+  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
+  onBlur?: (event: React.FocusEvent<HTMLTextAreaElement>) => void
 }
 
 const Textarea = ({
@@ -32,7 +32,7 @@ const Textarea = ({
         <TextareaDescription>{description}</TextareaDescription>
       ) : null}
     </TextareaContainer>
-  );
-};
+  )
+}
 
-export default Textarea;
+export default Textarea

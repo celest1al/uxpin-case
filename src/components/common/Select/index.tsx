@@ -3,21 +3,21 @@ import {
   SelectLabel,
   SelectForm,
   SelectDescription,
-} from "./style";
+} from './style'
 
 interface Option {
-  value: string;
-  label: string;
+  value: string
+  label: string
 }
 
 interface SelectProps {
-  id: string;
-  label: string;
-  value: string;
-  description?: string;
-  options: Option[];
-  selectFormWidth?: string;
-  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  id: string
+  label: string
+  value: string
+  description?: string
+  options: Option[]
+  selectFormWidth?: string
+  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void
 }
 
 const Select = ({
@@ -48,7 +48,7 @@ const Select = ({
         <SelectDescription>{description}</SelectDescription>
       ) : null}
     </SelectContainer>
-  );
-};
+  )
+}
 
-export default Select;
+export default Select

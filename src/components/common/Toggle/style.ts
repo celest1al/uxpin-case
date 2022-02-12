@@ -1,18 +1,18 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const ToggleContainer = styled.div`
   display: flex;
   align-items: center;
   color: #5e5e5e;
-`;
+`
 
 export const ToggleLabel = styled.p`
   margin: 0;
   margin-right: 16px;
   font-size: 0.875rem;
-`;
+`
 
-export const ToggleFormLabel = styled.label``;
+export const ToggleFormLabel = styled.label``
 
 export const ToggleForm = styled.input`
   margin: 0 0 1.5rem;
@@ -69,4 +69,4 @@ export const ToggleForm = styled.input`
     outline: dotted 1px #ccc;
     outline-offset: 0.45rem;
   }
-`;
+`

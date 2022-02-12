@@ -3,16 +3,16 @@ import {
   InputForm,
   InputLabel,
   InputDescription,
-} from "./style";
+} from './style'
 
 interface InputProps {
-  id: string;
-  label: string;
-  value?: string;
-  type?: string;
-  description?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  id: string
+  label: string
+  value?: string
+  type?: string
+  description?: string
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
 }
 
 const Input = ({
@@ -20,7 +20,7 @@ const Input = ({
   label,
   value,
   description,
-  type = "text",
+  type = 'text',
   onBlur,
   onChange,
 }: InputProps): JSX.Element => {
@@ -36,7 +36,7 @@ const Input = ({
       />
       {description ? <InputDescription>{description}</InputDescription> : null}
     </InputContainer>
-  );
-};
+  )
+}
 
-export default Input;
+export default Input

@@ -36,7 +36,7 @@ const PropertyList = ({
               />
             </PropertyFormContainer>
           )}
-          isDisabled={property?.isDisabled}
+          isShowed={property?.isShowed}
           onDeleteProperty={() => onDeleteProperty(property?.id)}
           onToggleProperty={() => onToggleProperty(property?.id)}
         />

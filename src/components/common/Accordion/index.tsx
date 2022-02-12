@@ -1,9 +1,11 @@
-import { useState, useRef } from "react";
+import { useState, useRef } from 'react'
 
-import PlusIcon from "components/assets/action-plus.svg";
-import TrashIcon from "components/assets/trash.svg";
-import CloseIcon from "components/assets/action-close.svg";
-import Visible from "components/assets/visibility-visible.svg";
+import PlusIcon from 'components/assets/action-plus.svg'
+import TrashIcon from 'components/assets/trash.svg'
+import CloseIcon from 'components/assets/action-close.svg'
+import Visible from 'components/assets/visibility-visible.svg'
+import Hidden from 'components/assets/visibility-hidden.svg'
+import { ButtonIcon } from 'components/common/Button'
 import {
   AccordionContainer,
   AccordionControl,
@@ -11,61 +13,91 @@ import {
   AccordionTitle,
   AccordionContentContainer,
   AccordionContent,
-  AccordionIcon,
-  AccordionIconButton,
-  ButtonTooltip,
-} from "./style";
+  AccordionIconContainer,
+} from './style'
 
 interface IAccordionProps {
-  title: string;
-  isDisabled?: boolean;
-  onToggleProperty: () => void;
-  onDeleteProperty: () => void;
-  renderForm?: () => JSX.Element;
-  renderContent?: () => JSX.Element;
+  title: string
+  isShowed?: boolean
+  onToggleProperty: () => void
+  onDeleteProperty: () => void
+  renderForm?: () => JSX.Element
+  renderContent?: () => JSX.Element
 }
 
 const Accordion = ({
   title,
-  isDisabled,
+  isShowed,
   onDeleteProperty,
   onToggleProperty,
   renderContent,
   renderForm,
 }: IAccordionProps) => {
-  const [isOpened, setOpened] = useState<boolean>(false);
-  const [height, setHeight] = useState<string>("0px");
-  const contentElement = useRef(null);
+  const [isOpened, setOpened] = useState<boolean>(false)
+  const [height, setHeight] = useState<string>('0px')
+  const contentElement = useRef(null)
 
   const HandleOpening = () => {
-    setOpened(!isOpened);
+    setOpened(!isOpened)
     //@ts-ignore
-    setHeight(!isOpened ? `${contentElement?.current?.scrollHeight}px` : "0px");
-  };
+    setHeight(!isOpened ? `${contentElement?.current?.scrollHeight}px` : '0px')
+  }
 
   return (
     <AccordionContainer>
-      <AccordionHeader onClick={() => (isOpened ? null : HandleOpening())}>
+      <AccordionHeader>
         <AccordionControl isOpened={isOpened}>
-          <AccordionTitle onClick={HandleOpening}>{title}</AccordionTitle>
-          <AccordionIconButton onClick={onToggleProperty}>
-            <AccordionIcon src={Visible} alt="visible" />
-            {isOpened && <ButtonTooltip>Hide property</ButtonTooltip>}
-          </AccordionIconButton>
-          <AccordionIconButton onClick={onDeleteProperty}>
-            <AccordionIcon src={TrashIcon} alt="trash" />
-            {isOpened && <ButtonTooltip>Delete property</ButtonTooltip>}
-          </AccordionIconButton>
+          <AccordionTitle isShowed={isShowed} onClick={HandleOpening}>
+            {title}
+          </AccordionTitle>
+          {isShowed ? (
+            <AccordionIconContainer isOpened={isOpened}>
+              <ButtonIcon
+                iconSrc={Visible}
+                iconAlt="visible"
+                onClick={onToggleProperty}
+                tooltipText="Hide property"
+                isShowTooltips={isOpened}
+              />
+            </AccordionIconContainer>
+          ) : (
+            <AccordionIconContainer isOpened={isOpened}>
+              <ButtonIcon
+                iconSrc={Hidden}
+                iconAlt="hidden"
+                onClick={onToggleProperty}
+                tooltipText="Show property"
+                isShowTooltips={isOpened}
+              />
+            </AccordionIconContainer>
+          )}
+          <AccordionIconContainer isOpened={isOpened}>
+            <ButtonIcon
+              iconSrc={TrashIcon}
+              iconAlt="trash"
+              onClick={onDeleteProperty}
+              tooltipText="Delete property"
+              isShowTooltips={isOpened}
+            />
+          </AccordionIconContainer>
         </AccordionControl>
         {renderForm && isOpened ? renderForm() : null}
         {isOpened ? (
-          <AccordionIconButton isOpened={isOpened} onClick={HandleOpening}>
-            <AccordionIcon src={CloseIcon} alt="close" />
-          </AccordionIconButton>
+          <AccordionIconContainer isOpened={isOpened}>
+            <ButtonIcon
+              iconSrc={CloseIcon}
+              iconAlt="close"
+              onClick={HandleOpening}
+            />
+          </AccordionIconContainer>
         ) : (
-          <AccordionIconButton isOpened={isOpened} onClick={HandleOpening}>
-            <AccordionIcon src={PlusIcon} alt="plus" />
-          </AccordionIconButton>
+          <AccordionIconContainer isOpened={isOpened}>
+            <ButtonIcon
+              iconSrc={PlusIcon}
+              iconAlt="plus"
+              onClick={HandleOpening}
+            />
+          </AccordionIconContainer>
         )}
       </AccordionHeader>
       <AccordionContentContainer
@@ -77,7 +109,7 @@ const Accordion = ({
         </AccordionContent>
       </AccordionContentContainer>
     </AccordionContainer>
-  );
-};
+  )
+}
 
-export default Accordion;
+export default Accordion

@@ -4,8 +4,8 @@ import {
 } from "interfaces/property.interface";
 
 import BluePlus from "components/assets/plus-icon-blue.svg";
-import PropertyForm from '../PropertyForm'
-import Button from "components/common/Button";
+import PropertyForm from "../PropertyForm";
+import { Button } from "components/common/Button";
 import {
   CreatePropertyButton,
   CreatePropertyHeader,
@@ -19,6 +19,7 @@ import {
 interface CreatePropertyProps {
   property: IProperty;
   isCreateMode: boolean;
+  onAddProperty: (property: IProperty) => void;
   handleCreateProperty: (params: IHandlePropertyParams) => void;
   setCreateMode: (value: boolean) => void;
 }
@@ -28,6 +29,7 @@ const CreateProperty = ({
   isCreateMode,
   handleCreateProperty,
   setCreateMode,
+  onAddProperty,
 }: CreatePropertyProps): JSX.Element => {
   return (
     <CreatePropertySection>
@@ -59,7 +61,18 @@ const CreateProperty = ({
             >
               Cancel
             </Button>
-            <Button color="blue" type="button">
+            <Button
+              color="blue"
+              type="button"
+              onClick={() => {
+                setCreateMode(false);
+                onAddProperty(property);
+                handleCreateProperty({
+                  type: "reset",
+                  value: "",
+                });
+              }}
+            >
               Add
             </Button>
           </ButtonContainer>

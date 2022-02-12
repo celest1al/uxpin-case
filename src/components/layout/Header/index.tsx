@@ -7,10 +7,20 @@ import {
   Breadcrumbs,
   Crumb,
 } from "./style";
-import LayoutIcon from "../../assets/layout-medium-tile-outline.svg";
-import Button from "../../common/Button";
+import LayoutIcon from "components/assets/layout-medium-tile-outline.svg";
+import { Button } from "components/common/Button";
 
-const Header = (): JSX.Element => {
+interface IHeaderProps {
+  isPropertyChanged: boolean;
+  onCancelPropertyChanged: () => void;
+  onConfirmPropertyChanged: () => void;
+}
+
+const Header = ({
+  isPropertyChanged,
+  onCancelPropertyChanged,
+  onConfirmPropertyChanged,
+}: IHeaderProps): JSX.Element => {
   return (
     <HeaderContainer>
       <HeaderContent>
@@ -25,10 +35,16 @@ const Header = (): JSX.Element => {
           <Crumb>Button</Crumb>
         </Breadcrumbs>
       </HeaderContent>
-      <HeaderContent>
-        <Button color="transparent">Discard changes</Button>
-        <Button color="blue">Save changes</Button>
-      </HeaderContent>
+      {isPropertyChanged && (
+        <HeaderContent>
+          <Button onClick={onCancelPropertyChanged} color="transparent">
+            Discard changes
+          </Button>
+          <Button onClick={onConfirmPropertyChanged} color="blue">
+            Save changes
+          </Button>
+        </HeaderContent>
+      )}
     </HeaderContainer>
   );
 };
