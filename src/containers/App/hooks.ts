@@ -8,6 +8,19 @@ import {
 } from 'interfaces/property.interface'
 import { defaultProperty, propertyListState } from 'constants/property.constant'
 
+export const useUpdateComponent = () => {
+  const [isShowedComponent, setIsShowedComponent] = useState(true)
+
+  const onToggleShowComponent = () => {
+    setIsShowedComponent(prevState => !prevState)
+  }
+
+  return {
+    isShowedComponent,
+    onToggleShowComponent,
+  }
+}
+
 export const useCreateProperty = () => {
   const [newProperty, setNewProperty] = useState<IProperty>(defaultProperty)
   const [isCreateMode, setIsCreateMode] = useState<boolean>(false)
@@ -40,10 +53,12 @@ export const useCreateProperty = () => {
 }
 
 export const useUpdateProperty = () => {
-  const [propertyList, setPropertyList] =
-    useState<IPropertyList[]>(propertyListState)
-  const [newPropertyList, setNewPropertyList] =
-    useState<IPropertyList[]>(propertyListState)
+  const [propertyList, setPropertyList] = useState<IPropertyList[]>([
+    ...propertyListState,
+  ])
+  const [newPropertyList, setNewPropertyList] = useState<IPropertyList[]>([
+    ...propertyListState,
+  ])
   const [isPropertyChanged, setIsPropertyChanged] = useState<boolean>(false)
 
   useEffect(() => {

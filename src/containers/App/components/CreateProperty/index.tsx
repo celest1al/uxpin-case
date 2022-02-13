@@ -45,6 +45,7 @@ const CreateProperty = ({
           <PropertyForm
             mode="create"
             property={property}
+            isShowed
             handleChangeProperty={handleCreateProperty}
           />
           <ButtonContainer>

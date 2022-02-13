@@ -11,6 +11,7 @@ interface InputProps {
   value?: string
   type?: string
   description?: string
+  isShowed?: boolean
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
 }
@@ -23,9 +24,10 @@ const Input = ({
   type = 'text',
   onBlur,
   onChange,
+  isShowed
 }: InputProps): JSX.Element => {
   return (
-    <InputContainer>
+    <InputContainer isShowed={isShowed}>
       <InputLabel htmlFor={id}>{label}</InputLabel>
       <InputForm
         type={type}
@@ -33,6 +35,7 @@ const Input = ({
         onChange={onChange}
         onBlur={onBlur}
         value={value}
+        isShowed={isShowed}
       />
       {description ? <InputDescription>{description}</InputDescription> : null}
     </InputContainer>

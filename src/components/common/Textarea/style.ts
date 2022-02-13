@@ -1,13 +1,14 @@
 import styled from 'styled-components'
 
-interface TextareaContainerProps {
+interface ITextareaProps {
   width?: string
+  isShowed?: boolean
 }
 
-export const TextareaContainer = styled.div<TextareaContainerProps>`
+export const TextareaContainer = styled.div<ITextareaProps>`
   display: flex;
   flex-direction: column;
-  color: #5e5e5e;
+  color: ${props => (props.isShowed ? '#5e5e5e' : '#e6e6e6')};
   font-size: 0.875rem;
   max-width: ${props => props.width || '100%'};
 `
@@ -17,11 +18,12 @@ export const TextareaLabel = styled.label`
   font-size: 0.875rem;
 `
 
-export const TextareaForm = styled.textarea`
+export const TextareaForm = styled.textarea<ITextareaProps>`
   border: 1px solid #e6e6e6;
   resize: none;
   padding: 8px;
-  color: #5e5e5e;
+  font-family: 'Lato', sans-serif;
+  color: ${props => (props.isShowed ? '#5e5e5e' : '#e6e6e6')};
 `
 
 export const TextareaDescription = styled.p`

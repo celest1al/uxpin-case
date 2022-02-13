@@ -1,17 +1,17 @@
-import type { Property } from "types/property.type";
-import { IHandlePropertyParams } from "interfaces/property.interface";
+import { IHandlePropertyParams } from 'interfaces/property.interface'
 
-import Toggle from "components/common/Toggle";
-import Select from "components/common/Select";
-import Textarea from "components/common/Textarea";
+import Toggle from 'components/common/Toggle'
+import Select from 'components/common/Select'
+import Textarea from 'components/common/Textarea'
 
 interface IDefaultValueFormProps {
-  id: string;
-  options?: string;
-  propertyType?: string;
-  propertyId?: number;
-  defaultValue: boolean | string | null;
-  handleCreateProperty: (params: IHandlePropertyParams) => void;
+  id: string
+  options?: string
+  propertyType?: string
+  propertyId?: number
+  isShowed?: boolean
+  defaultValue: boolean | string | null
+  handleCreateProperty: (params: IHandlePropertyParams) => void
 }
 
 const DefaultValueForm = ({
@@ -19,67 +19,72 @@ const DefaultValueForm = ({
   propertyType,
   propertyId,
   options,
+  isShowed,
   handleCreateProperty,
   defaultValue,
 }: IDefaultValueFormProps): JSX.Element => {
   switch (propertyType) {
-    case "boolean":
+    case 'boolean':
       return (
         <Toggle
+          id={id}
+          isShowed={isShowed}
           label="Default value"
           value={Boolean(defaultValue) ?? false}
-          onChange={(value) =>
+          onChange={value =>
             handleCreateProperty({
-              type: "defaultValue",
+              type: 'defaultValue',
               id: propertyId ?? 0,
               value,
             })
           }
         />
-      );
-    case "oneof":
+      )
+    case 'oneof':
       return (
         <Select
+          isShowed={isShowed}
           id={id}
           label="Default value"
           options={
-            options?.split(",").map((option) => {
+            options?.split(',').map(option => {
               return {
                 label: option,
                 value: option,
-              };
+              }
             }) || []
           }
           value={String(defaultValue)}
           selectFormWidth="118px"
-          onChange={(event) =>
+          onChange={event =>
             handleCreateProperty({
-              type: "defaultValue",
+              type: 'defaultValue',
               id: propertyId ?? 0,
               value: event?.target?.value,
             })
           }
         />
-      );
-    case "node":
+      )
+    case 'node':
       return (
         <Textarea
           id={id}
+          isShowed={isShowed}
           label="Default value"
           textareaWidth="500px"
-          value={String(defaultValue) ?? ""}
-          onChange={(event) =>
+          value={String(defaultValue) ?? ''}
+          onChange={event =>
             handleCreateProperty({
-              type: "defaultValue",
+              type: 'defaultValue',
               id: propertyId ?? 0,
               value: event?.target?.value,
             })
           }
         />
-      );
+      )
     default:
-      return <></>;
+      return <></>
   }
-};
+}
 
-export default DefaultValueForm;
+export default DefaultValueForm

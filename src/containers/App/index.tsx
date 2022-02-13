@@ -1,17 +1,24 @@
 import Button from '@mui/material/Button'
 
-import { useCreateProperty, useUpdateProperty } from './hooks'
+import {
+  useCreateProperty,
+  useUpdateProperty,
+  useUpdateComponent,
+} from './hooks'
 
-import visibilityOn from 'components/assets/visibility-visible.svg'
+import Visible from 'components/assets/visibility-visible.svg'
+import Hidden from 'components/assets/visibility-hidden.svg'
 import Gear from 'components/assets/gear.svg'
 import Header from 'components/layout/Header'
 import ComponentPreview from './components/ComponentsPreview'
 import CreateProperty from './components/CreateProperty'
 import PropertyList from './components/PropertyList'
+import { ButtonIcon } from 'components/common/Button'
 import { MainLayout } from 'components/layout/MainLayout'
 import { TitleContainer, Title, TitleIcon } from './style'
 
 function App() {
+  const { isShowedComponent, onToggleShowComponent } = useUpdateComponent()
   const { isCreateMode, newProperty, setIsCreateMode, handleCreateProperty } =
     useCreateProperty()
   const {
@@ -35,8 +42,22 @@ function App() {
       <MainLayout>
         <TitleContainer>
           <Title>Button</Title>
-          <TitleIcon src={visibilityOn} alt="visibility" />
-          <TitleIcon src={Gear} alt="gear" />
+          <ButtonIcon
+            iconSrc={isShowedComponent ? Visible : Hidden}
+            iconAlt={isShowedComponent ? 'visible' : 'hidden'}
+            onClick={onToggleShowComponent}
+            tooltipText="Toggle component visibility in library"
+            isShowTooltips
+          />
+          <ButtonIcon
+            iconSrc={Gear}
+            iconAlt="gear"
+            onClick={() => {
+              return
+            }}
+            tooltipText="Component settings"
+            isShowTooltips
+          />
         </TitleContainer>
         <ComponentPreview
           render={() => (

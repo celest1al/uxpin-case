@@ -1,20 +1,29 @@
 import styled from 'styled-components'
 
+interface IToggleProps {
+  isShowed?: boolean
+}
+
 export const ToggleContainer = styled.div`
   display: flex;
   align-items: center;
-  color: #5e5e5e;
 `
 
-export const ToggleLabel = styled.p`
+export const ToggleLabel = styled.p<IToggleProps>`
   margin: 0;
   margin-right: 16px;
   font-size: 0.875rem;
+  color: ${props => (props.isShowed ? '#5e5e5e' : '#e6e6e6')};
 `
 
-export const ToggleFormLabel = styled.label``
+export const ToggleFormContainer = styled.div`
+`
 
-export const ToggleForm = styled.input`
+export const ToggleFormLabel = styled.label<IToggleProps>`
+  color: ${props => (props.isShowed ? '#515151' : '#e6e6e6')};
+`
+
+export const ToggleForm = styled.input<IToggleProps>`
   margin: 0 0 1.5rem;
   box-sizing: border-box;
   font-size: 0;
@@ -26,7 +35,7 @@ export const ToggleForm = styled.input`
   height: 0;
   position: absolute;
   left: -9999px;
-  color: #5e5e5e;
+  color: ${props => (props.isShowed ? '#515151' : '#e6e6e6')};
 
   & + ${ToggleFormLabel} {
     margin: 0;
@@ -59,8 +68,8 @@ export const ToggleForm = styled.input`
   }
 
   &:checked + ${ToggleFormLabel} {
-    background-color: #e6e6e6;
-    color: #515151;
+    background-color: ${props => (props.isShowed ? '#e6e6e6' : '#f0f0f0')};
+    color: ${props => (props.isShowed ? '#515151' : '#e6e6e6')};
     box-shadow: 0 0 10px rgba(#66b3fb, 0.5);
     border-color: #e6e6e6;
     z-index: 1;

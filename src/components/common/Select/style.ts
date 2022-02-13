@@ -1,24 +1,25 @@
 import styled from 'styled-components'
 
-interface SelectFormProps {
+interface ISelectProps {
   width?: string
+  isShowed?: boolean
 }
 
-export const SelectContainer = styled.div`
+export const SelectContainer = styled.div<ISelectProps>`
   font-size: 0.875rem;
-  color: #5e5e5e;
+  color: ${props => (props.isShowed ? '#5e5e5e' : '#e6e6e6')};
 `
 
 export const SelectLabel = styled.label`
   margin-right: 16px;
 `
 
-export const SelectForm = styled.select<SelectFormProps>`
+export const SelectForm = styled.select<ISelectProps>`
   border: none;
   border-bottom: 1px solid #e6e6e6;
   background: transparent;
   width: ${props => props.width};
-  color: #5e5e5e;
+  color: ${props => (props.isShowed ? '#5e5e5e' : '#e6e6e6')};
 `
 
 export const SelectDescription = styled.p`

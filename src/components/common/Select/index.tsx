@@ -16,6 +16,7 @@ interface SelectProps {
   value: string
   description?: string
   options: Option[]
+  isShowed?: boolean
   selectFormWidth?: string
   onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void
 }
@@ -26,17 +27,19 @@ const Select = ({
   value,
   description,
   options,
+  isShowed,
   selectFormWidth,
   onChange,
 }: SelectProps): JSX.Element => {
   return (
-    <SelectContainer>
+    <SelectContainer isShowed={isShowed}>
       <SelectLabel htmlFor={id}>{label}</SelectLabel>
       <SelectForm
         id={id}
         value={value}
         onChange={onChange}
         width={selectFormWidth}
+        isShowed={isShowed}
       >
         {options?.map((option: Option, index: number) => (
           <option key={`${option?.value}-${index}`} value={option?.value}>

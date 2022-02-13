@@ -31,6 +31,7 @@ const PropertyList = ({
               <PropertyForm
                 propertyId={property?.id}
                 mode="update"
+                isShowed={property?.isShowed}
                 property={property?.property}
                 handleChangeProperty={handleChangeProperty}
               />
