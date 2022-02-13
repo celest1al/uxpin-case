@@ -5,7 +5,9 @@ import {
   useUpdateProperty,
   useUpdateComponent,
 } from './hooks'
+import { homepageSeo } from './constant'
 
+import Seo from 'components/common/Seo'
 import Visible from 'components/assets/visibility-visible.svg'
 import Hidden from 'components/assets/visibility-hidden.svg'
 import Gear from 'components/assets/gear.svg'
@@ -34,6 +36,7 @@ function App() {
 
   return (
     <>
+      <Seo {...homepageSeo} />
       <Header
         isPropertyChanged={isPropertyChanged}
         onCancelPropertyChanged={onCancelPropertyChanged}

@@ -48,3 +48,4 @@ Start the server
 ```
 
 ## Preview
+![Preview](/public/screenshot/preview.png)
