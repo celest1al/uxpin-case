@@ -4,7 +4,7 @@ Project for UXPIN simple page build with Vite, ReactJS , styled-components and T
 
 ## Demo
 
-[Demo Website](http://localhost:3000)
+[Demo Website](https://uxpin-case.vercel.app/)
 
 ## Run Locally
 
