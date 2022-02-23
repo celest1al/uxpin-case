@@ -13,7 +13,7 @@ export const HeaderContent = styled.div`
   display: flex;
 
   & > * + * {
-    margin-left: 8px;
+    margin-left: 14px;
   }
 `;
 
