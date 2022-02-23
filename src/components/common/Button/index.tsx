@@ -19,17 +19,19 @@ interface IButtonProps {
   color: ButtonColor
   type?: 'button' | 'submit' | 'reset' | undefined
   children: React.ReactNode
+  size?: string
   onClick?: (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
 const Button = ({
   color = 'blue',
   type = 'button',
+  size = 'default',
   children,
   onClick,
 }: IButtonProps): JSX.Element => {
   return (
-    <ButtonContainer type={type} color={color} onClick={onClick}>
+    <ButtonContainer size={size} type={type} color={color} onClick={onClick}>
       {children}
     </ButtonContainer>
   )

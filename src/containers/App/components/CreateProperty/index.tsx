@@ -56,6 +56,7 @@ const CreateProperty = ({
                   value: '',
                 })
               }}
+              
             >
               Cancel
             </Button>
@@ -70,6 +71,7 @@ const CreateProperty = ({
                   value: '',
                 })
               }}
+              size="small"
             >
               Add
             </Button>
