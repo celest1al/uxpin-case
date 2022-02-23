@@ -12,9 +12,10 @@ interface IIconButtonProps {
   iconAlt: string
   tooltipText?: string
   isShowTooltips?: boolean
-  onClick?: () => void
+  bgColor?: string,
+  onClick?: (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
-interface ButtonProps {
+interface IButtonProps {
   color: ButtonColor
   type?: 'button' | 'submit' | 'reset' | undefined
   children: React.ReactNode
@@ -26,7 +27,7 @@ const Button = ({
   type = 'button',
   children,
   onClick,
-}: ButtonProps): JSX.Element => {
+}: IButtonProps): JSX.Element => {
   return (
     <ButtonContainer type={type} color={color} onClick={onClick}>
       {children}
@@ -39,10 +40,11 @@ const ButtonIcon = ({
   iconAlt,
   tooltipText,
   isShowTooltips,
+  bgColor,
   onClick,
 }: IIconButtonProps) => {
   return (
-    <ButtonIconContainer onClick={onClick}>
+    <ButtonIconContainer bgColor={bgColor} onClick={onClick}>
       <Icon src={iconSrc} alt={iconAlt} />
       {isShowTooltips && <ButtonTooltip>{tooltipText}</ButtonTooltip>}
     </ButtonIconContainer>

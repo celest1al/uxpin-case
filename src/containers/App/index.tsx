@@ -17,7 +17,7 @@ import CreateProperty from './components/CreateProperty'
 import PropertyList from './components/PropertyList'
 import { ButtonIcon } from 'components/common/Button'
 import { MainLayout } from 'components/layout/MainLayout'
-import { TitleContainer, Title, TitleIcon } from './style'
+import { TitleContainer, Title, TitleIcon, TitleButtonContainer } from './style'
 
 function App() {
   const { isShowedComponent, onToggleShowComponent } = useUpdateComponent()
@@ -45,22 +45,24 @@ function App() {
       <MainLayout>
         <TitleContainer>
           <Title>Button</Title>
-          <ButtonIcon
-            iconSrc={isShowedComponent ? Visible : Hidden}
-            iconAlt={isShowedComponent ? 'visible' : 'hidden'}
-            onClick={onToggleShowComponent}
-            tooltipText="Toggle component visibility in library"
-            isShowTooltips
-          />
-          <ButtonIcon
-            iconSrc={Gear}
-            iconAlt="gear"
-            onClick={() => {
-              return
-            }}
-            tooltipText="Component settings"
-            isShowTooltips
-          />
+          <TitleButtonContainer>
+            <ButtonIcon
+              iconSrc={isShowedComponent ? Visible : Hidden}
+              iconAlt={isShowedComponent ? 'visible' : 'hidden'}
+              onClick={onToggleShowComponent}
+              tooltipText="Toggle component visibility in library"
+              isShowTooltips
+            />
+            <ButtonIcon
+              iconSrc={Gear}
+              iconAlt="gear"
+              onClick={() => {
+                return
+              }}
+              tooltipText="Component settings"
+              isShowTooltips
+            />
+          </TitleButtonContainer>
         </TitleContainer>
         <ComponentPreview
           render={() => (

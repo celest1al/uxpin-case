@@ -1,11 +1,8 @@
-import {
-  IProperty,
-  IHandlePropertyParams,
-} from "interfaces/property.interface";
+import { IProperty, IHandlePropertyParams } from 'interfaces/property.interface'
 
-import BluePlus from "components/assets/plus-icon-blue.svg";
-import PropertyForm from "../PropertyForm";
-import { Button } from "components/common/Button";
+import BluePlus from 'components/assets/plus-icon-blue.svg'
+import PropertyForm from '../PropertyForm'
+import { Button } from 'components/common/Button'
 import {
   CreatePropertyButton,
   CreatePropertyHeader,
@@ -14,14 +11,14 @@ import {
   CreatePropsButtonIcon,
   CreatePropertyForm,
   ButtonContainer,
-} from "./style";
+} from './style'
 
 interface CreatePropertyProps {
-  property: IProperty;
-  isCreateMode: boolean;
-  onAddProperty: (property: IProperty) => void;
-  handleCreateProperty: (params: IHandlePropertyParams) => void;
-  setCreateMode: (value: boolean) => void;
+  property: IProperty
+  isCreateMode: boolean
+  onAddProperty: (property: IProperty) => void
+  handleCreateProperty: (params: IHandlePropertyParams) => void
+  setCreateMode: (value: boolean) => void
 }
 
 const CreateProperty = ({
@@ -53,11 +50,11 @@ const CreateProperty = ({
               color="transparent"
               type="button"
               onClick={() => {
-                setCreateMode(false);
+                setCreateMode(false)
                 handleCreateProperty({
-                  type: "reset",
-                  value: "",
-                });
+                  type: 'reset',
+                  value: '',
+                })
               }}
             >
               Cancel
@@ -66,12 +63,12 @@ const CreateProperty = ({
               color="blue"
               type="button"
               onClick={() => {
-                setCreateMode(false);
-                onAddProperty(property);
+                setCreateMode(false)
+                onAddProperty(property)
                 handleCreateProperty({
-                  type: "reset",
-                  value: "",
-                });
+                  type: 'reset',
+                  value: '',
+                })
               }}
             >
               Add
@@ -80,7 +77,7 @@ const CreateProperty = ({
         </CreatePropertyForm>
       ) : null}
     </CreatePropertySection>
-  );
-};
+  )
+}
 
-export default CreateProperty;
+export default CreateProperty

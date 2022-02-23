@@ -1,7 +1,7 @@
-import { ComponentPreviewContainer } from "./style";
+import { ComponentPreviewContainer, ComponentPreviewTitle } from './style'
 
 interface ComponentPreviewProps {
-  render: (props: any) => JSX.Element;
+  render: (props: any) => JSX.Element
 }
 
 const ComponentPreview = ({
@@ -10,10 +10,10 @@ const ComponentPreview = ({
 }: ComponentPreviewProps): JSX.Element => {
   return (
     <ComponentPreviewContainer>
-      <h2>Component Preview</h2>
+      <ComponentPreviewTitle>Component Preview</ComponentPreviewTitle>
       {render(props)}
     </ComponentPreviewContainer>
-  );
-};
+  )
+}
 
-export default ComponentPreview;
+export default ComponentPreview

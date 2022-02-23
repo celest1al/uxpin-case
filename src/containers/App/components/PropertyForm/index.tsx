@@ -29,39 +29,42 @@ const PropertyForm = ({
         description="(name of the property given in code)"
         value={property?.propertyName}
         isShowed={isShowed}
-        onChange={event =>
+        onChange={event => {
+          event.stopPropagation()
           handleChangeProperty({
             type: 'propertyName',
             id: propertyId ?? 0,
             value: event?.target?.value,
           })
-        }
+        }}
       />
       <Input
         id={`${mode}_property-display_name-${propertyId}`}
         label="Display name"
         value={property?.displayName}
         isShowed={isShowed}
-        onChange={event =>
+        onChange={event => {
+          event.stopPropagation()
           handleChangeProperty({
             type: 'displayName',
             id: propertyId ?? 0,
             value: event?.target?.value,
           })
-        }
+        }}
       />
       <Textarea
         id={`${mode}_property-description-${propertyId}`}
         label="Description"
         textareaWidth="500px"
         value={property?.description}
-        onChange={event =>
+        onChange={event => {
+          event.stopPropagation()
           handleChangeProperty({
             type: 'description',
             id: propertyId ?? 0,
             value: event?.target?.value,
           })
-        }
+        }}
         isShowed={isShowed}
       />
       <Select
@@ -71,13 +74,14 @@ const PropertyForm = ({
         value={property?.propertyType}
         selectFormWidth="118px"
         isShowed={isShowed}
-        onChange={event =>
+        onChange={event => {
+          event.stopPropagation()
           handleChangeProperty({
             type: 'propertyType',
             id: propertyId ?? 0,
             value: event?.target?.value,
           })
-        }
+        }}
       />
       {propertyControlList[property?.propertyType] && (
         <Select
@@ -87,13 +91,14 @@ const PropertyForm = ({
           value={property?.propertyControl}
           selectFormWidth="118px"
           isShowed={isShowed}
-          onChange={event =>
+          onChange={event => {
+            event.stopPropagation()
             handleChangeProperty({
               type: 'propertyControl',
               id: propertyId ?? 0,
               value: event?.target?.value,
             })
-          }
+          }}
         />
       )}
       {property?.propertyType === 'oneof' && (
@@ -103,13 +108,14 @@ const PropertyForm = ({
           textareaWidth="500px"
           value={property?.options}
           description="(list options separared by comma)"
-          onChange={event =>
+          onChange={event => {
+            event.stopPropagation()
             handleChangeProperty({
               type: 'options',
               id: propertyId ?? 0,
               value: event?.target?.value,
             })
-          }
+          }}
           isShowed={isShowed}
         />
       )}

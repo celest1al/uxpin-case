@@ -7,10 +7,11 @@ interface IAccordionProps {
 
 export const AccordionContainer = styled.div`
   border-bottom: 1px solid #e6e6e6;
+  cursor: pointer;
 `
 
 export const AccordionHeader = styled.div`
-  padding: 16px;
+  padding: 20px 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -46,4 +47,13 @@ export const AccordionContent = styled.div`
 
 export const AccordionIconContainer = styled.div<IAccordionProps>`
   align-self: ${props => (props?.isOpened ? 'flex-start' : 'center')};
+`
+
+export const AccordionButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  & > * + * {
+    margin-left: 6px;
+  }
 `

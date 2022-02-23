@@ -1,5 +1,7 @@
 import { useState, useRef } from 'react'
 
+import { useHover } from './hooks'
+
 import PlusIcon from 'components/assets/action-plus.svg'
 import TrashIcon from 'components/assets/trash.svg'
 import CloseIcon from 'components/assets/action-close.svg'
@@ -14,13 +16,14 @@ import {
   AccordionContentContainer,
   AccordionContent,
   AccordionIconContainer,
+  AccordionButtonContainer,
 } from './style'
 
 interface IAccordionProps {
   title: string
   isShowed?: boolean
-  onToggleProperty: () => void
-  onDeleteProperty: () => void
+  onToggleProperty: (event: any) => void
+  onDeleteProperty: (event: any) => void
   renderForm?: () => JSX.Element
   renderContent?: () => JSX.Element
 }
@@ -35,6 +38,7 @@ const Accordion = ({
 }: IAccordionProps) => {
   const [isOpened, setOpened] = useState<boolean>(false)
   const [height, setHeight] = useState<string>('0px')
+  const { ref, value } = useHover()
   const contentElement = useRef(null)
 
   const HandleOpening = () => {
@@ -44,42 +48,44 @@ const Accordion = ({
   }
 
   return (
-    <AccordionContainer>
+    <AccordionContainer ref={ref} onClick={HandleOpening}>
       <AccordionHeader>
         <AccordionControl isOpened={isOpened}>
           <AccordionTitle isShowed={isShowed} onClick={HandleOpening}>
             {title}
           </AccordionTitle>
-          {isShowed ? (
+          <AccordionButtonContainer>
+            {isShowed ? (
+              <AccordionIconContainer isOpened={isOpened}>
+                <ButtonIcon
+                  iconSrc={Visible}
+                  iconAlt="visible"
+                  onClick={onToggleProperty}
+                  tooltipText="Hide property"
+                  isShowTooltips={isOpened}
+                />
+              </AccordionIconContainer>
+            ) : (
+              <AccordionIconContainer isOpened={isOpened}>
+                <ButtonIcon
+                  iconSrc={Hidden}
+                  iconAlt="hidden"
+                  onClick={event => onToggleProperty(event)}
+                  tooltipText="Show property"
+                  isShowTooltips={isOpened}
+                />
+              </AccordionIconContainer>
+            )}
             <AccordionIconContainer isOpened={isOpened}>
               <ButtonIcon
-                iconSrc={Visible}
-                iconAlt="visible"
-                onClick={onToggleProperty}
-                tooltipText="Hide property"
+                iconSrc={TrashIcon}
+                iconAlt="trash"
+                onClick={event => onDeleteProperty(event)}
+                tooltipText="Delete property"
                 isShowTooltips={isOpened}
               />
             </AccordionIconContainer>
-          ) : (
-            <AccordionIconContainer isOpened={isOpened}>
-              <ButtonIcon
-                iconSrc={Hidden}
-                iconAlt="hidden"
-                onClick={onToggleProperty}
-                tooltipText="Show property"
-                isShowTooltips={isOpened}
-              />
-            </AccordionIconContainer>
-          )}
-          <AccordionIconContainer isOpened={isOpened}>
-            <ButtonIcon
-              iconSrc={TrashIcon}
-              iconAlt="trash"
-              onClick={onDeleteProperty}
-              tooltipText="Delete property"
-              isShowTooltips={isOpened}
-            />
-          </AccordionIconContainer>
+          </AccordionButtonContainer>
         </AccordionControl>
         {renderForm && isOpened ? renderForm() : null}
         {isOpened ? (
@@ -93,6 +99,7 @@ const Accordion = ({
         ) : (
           <AccordionIconContainer isOpened={isOpened}>
             <ButtonIcon
+              bgColor={value ? '#e6e6e6' : ''}
               iconSrc={PlusIcon}
               iconAlt="plus"
               onClick={HandleOpening}

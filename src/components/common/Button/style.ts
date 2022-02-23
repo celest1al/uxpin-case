@@ -1,11 +1,12 @@
 import styled, { css } from 'styled-components'
 
-import { ButtonStyleProps } from '../../../interfaces/components.interface'
-import { buttonColor } from '../../../constants/color.constant'
+import { ButtonStyleProps } from 'interfaces/components.interface'
+import { buttonColor } from 'constants/color.constant'
 
 interface IIconButtonProps {
   isOpened?: boolean
   isDisabled?: boolean
+  bgColor?: string
 }
 
 export const ButtonContainer = styled.button<ButtonStyleProps>`
@@ -26,11 +27,13 @@ export const ButtonContainer = styled.button<ButtonStyleProps>`
 export const ButtonTooltip = styled.span``
 
 export const ButtonIconContainer = styled.button<IIconButtonProps>`
-  padding: 2px 4px;
-  background: transparent;
+  padding: 6px;
+  background: ${props => (props.bgColor ? props.bgColor : 'transparent')};
   border: none;
   position: relative;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   & ${ButtonTooltip} {
     font-size: 0.75rem;

@@ -11,7 +11,7 @@ interface ToggleProps {
   label: string
   value: boolean
   isShowed?: boolean
-  onChange: (value: boolean) => void
+  onChange: (event: React.ChangeEvent<HTMLInputElement>, value: boolean) => void
 }
 
 const Toggle = ({
@@ -30,7 +30,7 @@ const Toggle = ({
           type="radio"
           checked={value === true}
           isShowed={isShowed}
-          onChange={() => onChange(true)}
+          onChange={event => onChange(event, true)}
         />
         <ToggleFormLabel isShowed={isShowed} htmlFor={`${id}-true`}>
           True
@@ -40,7 +40,7 @@ const Toggle = ({
           type="radio"
           checked={value === false}
           isShowed={isShowed}
-          onChange={() => onChange(false)}
+          onChange={event => onChange(event, false)}
         />
         <ToggleFormLabel isShowed={isShowed} htmlFor={`${id}-false`}>
           False

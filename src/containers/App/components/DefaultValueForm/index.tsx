@@ -31,13 +31,14 @@ const DefaultValueForm = ({
           isShowed={isShowed}
           label="Default value"
           value={Boolean(defaultValue) ?? false}
-          onChange={value =>
+          onChange={(event, value) => {
+            event.stopPropagation()
             handleCreateProperty({
               type: 'defaultValue',
               id: propertyId ?? 0,
               value,
             })
-          }
+          }}
         />
       )
     case 'oneof':
@@ -56,13 +57,14 @@ const DefaultValueForm = ({
           }
           value={String(defaultValue)}
           selectFormWidth="118px"
-          onChange={event =>
+          onChange={event => {
+            event.stopPropagation()
             handleCreateProperty({
               type: 'defaultValue',
               id: propertyId ?? 0,
               value: event?.target?.value,
             })
-          }
+          }}
         />
       )
     case 'node':
@@ -73,13 +75,14 @@ const DefaultValueForm = ({
           label="Default value"
           textareaWidth="500px"
           value={String(defaultValue) ?? ''}
-          onChange={event =>
+          onChange={event => {
+            event.stopPropagation()
             handleCreateProperty({
               type: 'defaultValue',
               id: propertyId ?? 0,
               value: event?.target?.value,
             })
-          }
+          }}
         />
       )
     default:

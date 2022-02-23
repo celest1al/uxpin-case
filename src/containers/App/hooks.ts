@@ -105,7 +105,8 @@ export const useUpdateProperty = () => {
     }
   }
 
-  const onToggleProperty = (id: number) => {
+  const onToggleProperty = (event: any, id: number) => {
+    event.stopPropagation()
     const indexedProperty = newPropertyList.findIndex(item => item?.id === id)
     let tempPropertyList = newPropertyList
 
@@ -121,7 +122,8 @@ export const useUpdateProperty = () => {
     }
   }
 
-  const onDeleteProperty = (id: number) => {
+  const onDeleteProperty = (event: any, id: number) => {
+    event.stopPropagation()
     const filteredPropertyList = newPropertyList.filter(item => item?.id !== id)
 
     setNewPropertyList(filteredPropertyList)

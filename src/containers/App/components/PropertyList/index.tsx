@@ -1,17 +1,17 @@
 import {
   IPropertyList,
   IHandlePropertyParams,
-} from "interfaces/property.interface";
+} from 'interfaces/property.interface'
 
-import Accordion from "components/common/Accordion";
-import PropertyForm from "../PropertyForm";
-import { PropertyListContainer, PropertyFormContainer } from "./style";
+import Accordion from 'components/common/Accordion'
+import PropertyForm from '../PropertyForm'
+import { PropertyListContainer, PropertyFormContainer } from './style'
 
 interface IPropertyListProps {
-  propertyList: IPropertyList[];
-  onToggleProperty: (id: number) => void;
-  onDeleteProperty: (id: number) => void;
-  handleChangeProperty: (params: IHandlePropertyParams) => void;
+  propertyList: IPropertyList[]
+  onToggleProperty: (event: any, id: number) => void
+  onDeleteProperty: (event: any, id: number) => void
+  handleChangeProperty: (params: IHandlePropertyParams) => void
 }
 
 const PropertyList = ({
@@ -27,7 +27,7 @@ const PropertyList = ({
           key={index}
           title={property?.property?.propertyName}
           renderForm={() => (
-            <PropertyFormContainer>
+            <PropertyFormContainer onClick={event => event.stopPropagation()}>
               <PropertyForm
                 propertyId={property?.id}
                 mode="update"
@@ -38,12 +38,12 @@ const PropertyList = ({
             </PropertyFormContainer>
           )}
           isShowed={property?.isShowed}
-          onDeleteProperty={() => onDeleteProperty(property?.id)}
-          onToggleProperty={() => onToggleProperty(property?.id)}
+          onDeleteProperty={event => onDeleteProperty(event, property?.id)}
+          onToggleProperty={event => onToggleProperty(event, property?.id)}
         />
       ))}
     </PropertyListContainer>
-  );
-};
+  )
+}
 
-export default PropertyList;
+export default PropertyList

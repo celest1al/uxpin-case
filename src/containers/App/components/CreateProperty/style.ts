@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const CreatePropertySection = styled.section`
   margin-top: 80px;
+  margin-bottom: 17px;
   max-width: 820px;
 `;
 
@@ -14,7 +15,7 @@ export const CreatePropertyHeader = styled.div`
 export const CreatePropertyTitle = styled.h2`
   font-size: 1.5rem;
   margin: 0;
-  margin-right: 16px;
+  margin-right: 10px;
 `;
 
 export const CreatePropertyButton = styled.button`
@@ -28,14 +29,15 @@ export const CreatePropertyButton = styled.button`
 `;
 
 export const CreatePropsButtonIcon = styled.img`
-  margin-right: 8px;
+  margin-right: 5px;
 `;
 
 export const CreatePropertyForm = styled.form`
-  padding: 16px;
+  padding: 12px 20px;
+  margin-top: 17px;
 
   & > * + * {
-    margin-top: 16px;
+    margin-top: 12px;
   }
 `;
 
